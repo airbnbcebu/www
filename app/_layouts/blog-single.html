@@ -1,0 +1,437 @@
+---
+title: Airbnb Cebu
+author:
+  name: Ian Cabigon
+  email: "ian@cebuhomepages.com"
+  pic: https://a2.muscache.com/im/pictures/d2573ad7-eed6-49b8-af76-c55ae611c143.jpg?aki_policy=profile_x_medium
+  desc: "A passionate Tech guy, a husband and a father. He loves real estate investing and is constantly expanding his portfolio of investments and businesses. He doesn't know how to write but loves to read books. He's Looking forward to connecting with fellow Cebuanos that are doing their part in this so called sharing economy."
+
+date:
+modified:
+
+header:
+  image:
+    src:
+    description: 
+---
+<!DOCTYPE html>
+<html dir="ltr" lang="en-US">
+<head>
+
+	{% include head.html %}
+
+</head>
+
+<body class="stretched">
+
+	<!-- Document Wrapper
+	============================================= -->
+	<div id="wrapper" class="clearfix">
+
+		<!-- Header
+		============================================= -->
+		<header id="header" class="full-header">
+
+			<div id="header-wrap">
+
+				<div class="container clearfix">
+
+					<div id="primary-menu-trigger"><i class="icon-reorder"></i></div>
+
+					<!-- Logo
+					============================================= -->
+					<div id="logo">
+						<a href="index.html" class="standard-logo" data-dark-logo="/img/logo-dark.png"><img src="{{ site.cdn }}/img/logo.png" alt="Canvas Logo"></a>
+						<a href="index.html" class="retina-logo" data-dark-logo="{{ site.cdn }}/img/logo-dark@2x.png"><img src="{{ site.cdn }}/img/logo@2x.png" alt="Canvas Logo"></a>
+					</div><!-- #logo end -->
+
+					<!-- Primary Navigation
+					============================================= -->
+					<nav id="primary-menu">
+
+						<ul>
+							<li><a href="/">Home</a></li>
+							<li><a href="/about">About</a></li>
+							<li><a href="/tips">Tips</a></li>
+							<li><a href="/tools">Tools</a></li>
+						</ul>
+
+						<!-- Top Search
+						============================================= -->
+						<div id="top-search">
+							<a href="#" id="top-search-trigger"><i class="icon-search3"></i><i class="icon-line-cross"></i></a>
+							<form action="search.html" method="get">
+								<input type="text" name="q" class="form-control" value="" placeholder="Type &amp; Hit Enter..">
+							</form>
+						</div><!-- #top-search end -->
+
+					</nav><!-- #primary-menu end -->
+
+				</div>
+
+			</div>
+
+		</header><!-- #header end -->
+
+		<!-- Page Title
+		============================================= -->
+		<section id="page-title">
+
+			<div class="container clearfix">
+				<span>Our experiences with the sharing economy</span>
+				<ol class="breadcrumb">
+					<li><a href="#">Home</a></li>
+					<li class="active">Blog</li>
+				</ol>
+			</div>
+
+		</section><!-- #page-title end -->
+
+		<!-- Content
+		============================================= -->
+		<section id="content">
+
+			<div class="content-wrap">
+
+				<div class="container clearfix">
+
+					<!-- Sidebar
+					============================================= -->
+					<div class="sidebar nobottommargin clearfix">
+						<div class="sidebar-widgets-wrap">
+
+							<div class="widget clearfix">
+								<h4>Airbnb Listings</h4>
+								<div id="oc-portfolio-sidebar" class="owl-carousel carousel-widget" data-items="1" data-margin="10" data-loop="true" data-nav="false" data-autoplay="5000">
+									{% for listing in site.data.listings %}
+									<div class="oc-item">
+										<div class="iportfolio">
+											<div class="portfolio-image">
+												<a href="{{ listing.link }}">
+													<img src="{{ listing.img }}" alt="{{ listing.name }}">
+												</a>
+												<div class="portfolio-overlay">
+													<a href="{{ listing.img }}" class="center-icon" data-lightbox="image"><i class="icon-line-plus"></i></a>
+												</div>
+											</div>
+											<div class="portfolio-desc center nobottompadding">
+												<h3><a href="{{ listing.link }}" target="_blank">{{ listing.name }}</a></h3>
+											</div>
+										</div>
+									</div>
+									{% endfor %}
+								</div>
+
+							</div>
+
+						</div>
+					</div><!-- .sidebar end -->
+
+					<!-- Post Content
+					============================================= -->
+					<div class="postcontent bothsidebar nobottommargin clearfix">
+
+						<div class="single-post nobottommargin">
+
+							<!-- Single Post
+							============================================= -->
+							<div class="entry clearfix">
+
+								<!-- Entry Title
+								============================================= -->
+								<div class="entry-title">
+									<h2>{{ page.title }}</h2>
+								</div><!-- .entry-title end -->
+
+								<!-- Entry Meta
+								============================================= -->
+								<ul class="entry-meta clearfix">
+									<li><i class="icon-calendar3"></i> {{ page.date | date_xmlschema | date: '%d %B %Y'}}</li>
+									<li><a href="#"><i class="icon-user"></i> {{ page.user }}</a></li>
+									<li><i class="icon-folder-open"></i> 
+									{% assign post = page %}
+									{% if post.tags.size > 0 %}
+									    
+									    {% for post_tag in post.tags %}
+									        {% for data_tag in site.data.tags %}
+									            {% if data_tag.slug == post_tag %}
+									                {% assign tag = data_tag %}
+									            {% endif %}
+									        {% endfor %}
+									        {% if tag %}
+									            <a href="{{ site.baseurl }}/blog/tags/{{ tag.slug }}/">{{ tag.name }}</a>{% if forloop.last == false %}, {% endif %}
+									            {% assign tag = '' %}
+									        {% endif %}
+									    {% endfor %}
+									{% endif %}
+									<li><a href="#"><i class="icon-camera-retro"></i></a></li>
+								</ul><!-- .entry-meta end -->
+
+								<!-- Entry Image
+								============================================= -->
+								<div class="entry-image">
+									<a href="#"><img src="{{ page.blog.img.src }}" alt="{{ page.blog.img.alt }}"></a>
+								</div><!-- .entry-image end -->
+
+								<!-- Entry Content
+								============================================= -->
+								<div class="entry-content notopmargin">
+
+									{{ content }}
+
+									<!-- Tag Cloud
+									============================================= -->
+									<div class="tagcloud clearfix bottommargin">
+										<a href="#">general</a>
+										<a href="#">information</a>
+										<a href="#">media</a>
+										<a href="#">press</a>
+										<a href="#">gallery</a>
+										<a href="#">illustration</a>
+									</div><!-- .tagcloud end -->
+
+									<div class="clear"></div>
+
+									<!-- Post Single - Share
+									============================================= -->
+									<div class="si-share noborder clearfix">
+										<span>Share this Post:</span>
+										<div>
+											<a href="//www.facebook.com/sharer/sharer.php?u={{ site.baseurl }}{{ page.url }}" class="social-icon si-borderless si-facebook">
+												<i class="icon-facebook"></i>
+												<i class="icon-facebook"></i>
+											</a>
+											<a href="//twitter.com/share?url={{ site.baseurl }}{{ page.url }}" class="social-icon si-borderless si-twitter">
+												<i class="icon-twitter"></i>
+												<i class="icon-twitter"></i>
+											</a>
+											<a href="//plus.google.com/share?url={{ site.baseurl }}{{ page.url }}" class="social-icon si-borderless si-gplus">
+												<i class="icon-gplus"></i>
+												<i class="icon-gplus"></i>
+											</a>
+											<a href="mailto:{{ page.author.email }}?subject:{{ site.baseurl }}{{ page.url }}" class="social-icon si-borderless si-email3">
+												<i class="icon-email3"></i>
+												<i class="icon-email3"></i>
+											</a>
+										</div>
+									</div><!-- Post Single - Share End -->
+
+								</div>
+							</div><!-- .entry end -->
+
+							<!-- Post Navigation
+							============================================= -->
+							{% if paginator.previous_page or paginator.next_page %}
+							<div class="post-navigation clearfix">
+								{% if paginator.next_page %}
+								<div class="col_half nobottommargin">
+									<a href="{{ paginator.next_page_path | prepend: site.baseurl | replace: '//', '/' }}">&lArr; Previous Post</a>
+								</div>
+								{% endif %}
+								{% if paginator.previous_page %}
+								<div class="col_half col_last tright nobottommargin">
+									<a href="{{ paginator.previous_page_path | prepend: site.baseurl | replace: '//', '/' }}">Next Post &rArr;</a>
+								</div>
+								{% endif %}
+
+							</div><!-- .post-navigation end -->
+							{% endif %}
+
+							{% if page.previous or page.next %}
+							<div class="post-navigation clearfix">
+								{% if page.previous %}
+								<div class="col_half nobottommargin">
+									<a href="{{ page.previous.url }}">&lArr; &nbsp;{{ page.previous.title | truncatewords: 20 }}</a>
+								</div>
+								{% endif %}
+								{% if page.next %}
+								<div class="col_half col_last tright nobottommargin">
+									<a href="{{ page.next.url }}">{{ page.next.title | truncatewords: 20 }} &nbsp; &rArr;</a>
+								</div>
+								{% endif %}
+
+							</div><!-- .post-navigation end -->
+							{% endif %}
+
+							<div class="line"></div>
+
+							<!-- Post Author Info
+							============================================= -->
+							<div class="panel panel-default">
+								<div class="panel-heading">
+									<h3 class="panel-title">Posted by <span><a href="mailto: {{ page.author.email }}">{{ page.author.name }}</a></span></h3>
+								</div>
+								<div class="panel-body">
+									<div class="author-image">
+										<img src="{{ page.author.pic }}" alt="" class="img-circle">
+									</div>
+									{{ page.author.desc }}
+								</div>
+							</div><!-- Post Single - Author End -->
+
+							<div class="line"></div>
+
+							<h4>Related Posts:</h4>
+
+							<div class="related-posts clearfix">
+								{% for post in site.posts limit: 3 %}
+								<div class="mpost clearfix">
+									<div class="entry-image">
+										<a href="#"><img src="{{ site.cdn }}{{ post.entry.small }}" alt="{{ post.entry.name }}"></a>
+									</div>
+									<div class="entry-c">
+										<div class="entry-title">
+											<h4><a href="{{ site.baseurl }}{{ post.url }}">{{ post.title }}</a></h4>
+										</div>
+										<ul class="entry-meta clearfix">
+											<li><i class="icon-calendar3"></i> {{ post.date | date_xmlschema | date: "%d %B %Y"}}</li>
+											
+										</ul>
+										<div class="entry-content">{{ post.content | truncatewords: 20 }}</div>
+									</div>
+								</div>
+								{% endfor %}
+
+							</div>
+
+						</div>
+
+					</div><!-- .postcontent end -->
+
+					<!-- Sidebar
+					============================================= -->
+					<div class="sidebar nobottommargin col_last clearfix">
+						<div class="sidebar-widgets-wrap">
+
+							<div class="widget clearfix">
+								<h4>Recent Reviews</h4>
+								<div class="fslider testimonial noborder nopadding noshadow" data-animation="slide" data-arrows="false">
+									<div class="flexslider">
+										<div class="slider-wrap">
+											{% for review in site.data.reviews limit 3 %}
+											<div class="slide">
+												<div class="testi-image">
+													<a href="#"><img src="{{ review.pic }}" alt="{{ review.name }}"></a>
+												</div>
+												<div class="testi-content">
+													<p>{{ review.content }}</p>
+													<div class="testi-meta">
+														{{ review.name }}
+														<span>{{ review.place }}</span>
+													</div>
+												</div>
+											</div>
+											{% endfor %}
+										</div>
+									</div>
+								</div>
+
+							</div>
+
+							<div class="widget clearfix">
+
+								<div class="tabs nobottommargin clearfix" id="sidebar-tabs">
+
+									<ul class="tab-nav clearfix">
+										<li><a href="#tabs-1">Popular</a></li>
+										<li><a href="#tabs-2">Recent</a></li>
+										<li><a href="#tabs-3"><i class="icon-comments-alt norightmargin"></i></a></li>
+									</ul>
+
+									<div class="tab-container">
+
+										<div class="tab-content clearfix" id="tabs-1">
+											<div id="popular-post-list-sidebar">
+												{% for post in site.posts %}
+												{% if post.small_img %}
+												<div class="spost clearfix">
+													<div class="entry-image">
+														<a href="#" class="nobg"><img class="img-circle" src="{{ site.cdn }}{{ post.small_img }}" alt="{{ post.title }}"></a>
+													</div>
+													<div class="entry-c">
+														<div class="entry-title">
+															<h4><a href="{{ post.url }}">{{ post.title }}</a></h4>
+														</div>
+													</div>
+												</div>
+												{% endif %}
+												{% endfor %}
+											</div>
+										</div>
+										<div class="tab-content clearfix" id="tabs-2">
+											<div id="recent-post-list-sidebar">
+
+												{% for post in site.posts %}
+												{% if post.small_img %}
+												<div class="spost clearfix">
+													<div class="entry-image">
+														<a href="#" class="nobg"><img class="img-circle" src="{{ site.cdn }}{{ post.small_img }}" alt=""></a>
+													</div>
+													<div class="entry-c">
+														<div class="entry-title">
+															<h4><a href="{{ post.url }}">{{ post.title }}</a></h4>
+														</div>
+														<ul class="entry-meta">
+															<li>{{ post.date | date_xmlschema | date: '%d %B %Y'}}</li>
+														</ul>
+													</div>
+												</div>
+												{% endif %}
+												{% endfor %}
+
+
+											</div>
+										</div>
+									</div>
+
+								</div>
+
+							</div>
+{% comment %}
+							<div class="widget clearfix">
+
+								<h4>Tag Cloud</h4>
+								<div class="tagcloud">
+									{% assign post = page %}
+									{% if post.tags.size > 0 %}
+									    
+									    {% for post_tag in post.tags %}
+									        {% for data_tag in site.data.tags %}
+									            {% if data_tag.slug == post_tag %}
+									                {% assign tag = data_tag %}
+									            {% endif %}
+									        {% endfor %}
+									        {% if tag %}
+									            <a href="{{ site.baseurl }}/blog/tags/{{ tag.slug }}/">{{ tag.name }}</a>
+									            {% assign tag = '' %}
+									        {% endif %}
+									    {% endfor %}
+									{% endif %}
+								</div>
+{% endcomment %}
+							</div>
+
+						</div>
+
+					</div><!-- .sidebar end -->
+
+				</div>
+
+			</div>
+
+		</section><!-- #content end -->
+
+
+		{% include footer.html %}
+
+	</div><!-- #wrapper end -->
+
+	<!-- Go To Top
+	============================================= -->
+	<div id="gotoTop" class="icon-angle-up"></div>
+
+	{% include js.html %}
+
+
+</body>
+</html>

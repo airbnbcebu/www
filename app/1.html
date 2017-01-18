@@ -1,0 +1,268 @@
+---
+title: Airbnb Hosts Cebu
+---
+<!DOCTYPE html>
+<html dir="ltr" lang="en-US">
+<head>
+
+	{% include head.html %}
+
+</head>
+
+<body class="stretched">
+
+	<!-- Document Wrapper
+	============================================= -->
+	<div id="wrapper" class="clearfix">
+
+		<!-- Header
+		============================================= -->
+		<header id="header" class="full-header">
+
+			<div id="header-wrap">
+
+				<div class="container clearfix">
+
+					<div id="primary-menu-trigger"><i class="icon-reorder"></i></div>
+
+					<!-- Logo
+					============================================= -->
+					<div id="logo">
+						<a href="index.html" class="standard-logo" data-dark-logo="{{ site.cdn }}/img/logo-dark.png"><img src="{{ site.cdn }}/img/logo.png" alt="Canvas Logo"></a>
+						<a href="index.html" class="retina-logo" data-dark-logo="{{ site.cdn }}/img/logo-dark@2x.png"><img src="{{ site.cdn }}/img/logo@2x.png" alt="Canvas Logo"></a>
+					</div><!-- #logo end -->
+
+					<!-- Primary Navigation
+					============================================= -->
+					<nav id="primary-menu">
+
+						<ul>
+							<li><a href="/">Home</a></li>
+							<li><a href="/about">About</a></li>
+							<li><a href="/tips">Tips</a></li>
+							<li><a href="/tools">Tools</a></li>
+						</ul>
+
+						<!-- Top Search
+						============================================= -->
+						<div id="top-search">
+							<a href="#" id="top-search-trigger"><i class="icon-search3"></i><i class="icon-line-cross"></i></a>
+							<form action="search.html" method="get">
+								<input type="text" name="q" class="form-control" value="" placeholder="Type &amp; Hit Enter..">
+							</form>
+						</div><!-- #top-search end -->
+
+					</nav><!-- #primary-menu end -->
+
+				</div>
+
+			</div>
+
+		</header><!-- #header end -->
+
+		<!-- Page Title
+		============================================= -->
+		<section id="page-title">
+
+			<div class="container clearfix">
+				<h1>Airbnb Hosts of Cebu</h1>
+				<span>Our experiences with the sharing economy</span>
+				<ol class="breadcrumb">
+					<li><a href="#">Home</a></li>
+					<li class="active">Blog</li>
+				</ol>
+			</div>
+
+		</section><!-- #page-title end -->
+
+		<!-- Content
+		============================================= -->
+		<section id="content">
+
+			<div class="content-wrap">
+
+				<div class="container clearfix">
+
+					<!-- Post Content
+					============================================= -->
+					<div class="postcontent nobottommargin col_last clearfix">
+
+						<!-- Posts
+						============================================= -->
+						<div id="posts" class="post-timeline clearfix">
+
+							<div class="timeline-border"></div>
+							{% for post in site.posts %}
+							<div class="entry clearfix">
+								<div class="entry-timeline">
+									{{ post.date | date: '%-d'}}<span>{{ post.pub_date.MMM }}</span>
+									<div class="timeline-divider"></div>
+								</div>
+								<div class="entry-image">
+									{% if post.entry.img %}
+									<a href="{{ site.cdn }}{{ post.entry.img }}" data-lightbox="image"><img class="image_fade" src="{{ site.cdn }}{{ post.entry.img }}" alt="Image Post"></a>
+									{% elsif post.entry.vimeo %}
+									<iframe src="{{ post.entry.vimeo }}" width="500" height="281" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+									{% elsif post.entry.fslider %}
+									<div class="fslider" data-arrows="false" data-lightbox="gallery">
+										<div class="flexslider">
+											<div class="slider-wrap">
+												{% for slide in post.entry.fslider_slides %}
+												<div class="slide"><a href="{{ site.cdn }}{{ slide.full }}" data-lightbox="gallery-item"><img class="{{ site.cdn }}/image_fade" src="{{ site.cdn }}{{ slide.standard }}" alt="{{ slide.desc }}"></a></div>
+												{% endfor %}
+											</div>
+										</div>
+									</div>
+									{% elsif post.entry.link %}
+									<a href="{{post.entry.link}}" class="entry-link" target="_blank">
+										{{ post.entry.link_desc }}
+										<span>- {{ post.entry.link }}</span>
+									</a>
+									{% endif %}
+								</div>
+								<div class="entry-title">
+									<h2><a href="{{ post.url }}">{{ post.title }}</a></h2>
+								</div>
+								<ul class="entry-meta clearfix">
+									<li><a href="#"><i class="icon-user"></i> {{ post.author.name }}</a></li>
+
+								</ul>
+								<div class="entry-content">
+									<p>{{ post.content | truncatewords 20 }}</p>
+									<a href="{{ post.url }}"class="more-link">Read More</a>
+								</div>
+							</div>
+							{% endfor %}
+
+						</div><!-- #posts end -->
+
+					</div><!-- .postcontent end -->
+
+					<!-- Sidebar
+					============================================= -->
+					<div class="sidebar nobottommargin clearfix">
+						<div class="sidebar-widgets-wrap">
+
+							<div class="widget clearfix">
+								<h4>Airbnb Listings</h4>
+								<div id="oc-portfolio-sidebar" class="owl-carousel carousel-widget" data-items="1" data-margin="10" data-loop="true" data-nav="false" data-autoplay="5000">
+									{% for listing in site.data.listings %}
+									<div class="oc-item">
+										<div class="iportfolio">
+											<div class="portfolio-image">
+												<a href="{{ listing.link }}">
+													<img src="{{ listing.img }}" alt="{{ listing.name }}">
+												</a>
+												<div class="portfolio-overlay">
+													<a href="{{ listing.img }}" class="center-icon" data-lightbox="image"><i class="icon-line-plus"></i></a>
+												</div>
+											</div>
+											<div class="portfolio-desc center nobottompadding">
+												<h3><a href="{{ listing.link }}" target="_blank">{{ listing.name }}</a></h3>
+											</div>
+										</div>
+									</div>
+									{% endfor %}
+								</div>
+
+							</div>
+{% comment %}
+							<div class="widget widget-twitter-feed clearfix">
+
+								<h4>Instagram Feed</h4>
+								<ul class="iconlist twitter-feed" data-username="ilovestaycations" data-count="2">
+									<li></li>
+								</ul>
+
+								<a href="https://instagram.com/ilovestaycations" class="btn btn-default btn-sm fright">Follow Us on Instagram</a>
+
+							</div>
+
+							<div class="widget clearfix">
+
+								<h4>Instagram Photostream</h4>
+								<div id="instagram-photos" class="instagram-photos masonry-thumbs col-5" data-user="269801886" data-count="15" data-type="user"></div>
+
+							</div>
+{% endcomment %}
+							<div class="widget clearfix">
+
+								<div class="tabs nobottommargin clearfix" id="sidebar-tabs">
+
+									<ul class="tab-nav clearfix">
+										<li><a href="#tabs-1">Popular</a></li>
+										<li><a href="#tabs-2">Recent</a></li>
+										<li><a href="#tabs-3"><i class="icon-comments-alt norightmargin"></i></a></li>
+									</ul>
+
+									<div class="tab-container">
+
+										<div class="tab-content clearfix" id="tabs-1">
+											<div id="popular-post-list-sidebar">
+												{% for post in site.posts %}
+												{% if post.small_img %}
+												<div class="spost clearfix">
+													<div class="entry-image">
+														<a href="#" class="nobg"><img class="img-circle" src="{{ site.cdn }}{{ post.small_img }}" alt="{{ post.title }}"></a>
+													</div>
+													<div class="entry-c">
+														<div class="entry-title">
+															<h4><a href="{{ post.url }}">{{ post.title }}</a></h4>
+														</div>
+													</div>
+												</div>
+												{% endif %}
+												{% endfor %}
+											</div>
+										</div>
+										<div class="tab-content clearfix" id="tabs-2">
+											<div id="recent-post-list-sidebar">
+
+												{% for post in site.posts %}
+												{% if post.small_img %}
+												<div class="spost clearfix">
+													<div class="entry-image">
+														<a href="#" class="nobg"><img class="img-circle" src="{{ site.cdn }}{{ post.small_img }}" alt=""></a>
+													</div>
+													<div class="entry-c">
+														<div class="entry-title">
+															<h4><a href="{{ post.url }}">{{ post.title }}</a></h4>
+														</div>
+														<ul class="entry-meta">
+															<li>{{ post.date | date_xmlschema | date: '%d %B %Y'}}</li>
+														</ul>
+													</div>
+												</div>
+												{% endif %}
+												{% endfor %}
+
+
+											</div>
+										</div>
+									</div>
+
+								</div>
+
+							</div>
+
+						</div>
+
+					</div><!-- .sidebar end -->
+
+				</div>
+
+			</div>
+
+		</section><!-- #content end -->
+
+		{% include footer.html %}
+
+	</div><!-- #wrapper end -->
+
+	<!-- Go To Top
+	============================================= -->
+	<div id="gotoTop" class="icon-angle-up"></div>
+
+	{% include js.html %}
+</body>
+</html>
