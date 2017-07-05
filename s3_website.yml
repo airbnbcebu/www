@@ -1,6 +1,6 @@
 s3_id: AKIAI332IW6E55YUOBFA
 s3_secret: flzkAJZB49Ip3RQVIzBoxGgY6Csf7qRyY5i+0wNI
-s3_bucket: airbnbcebu
+s3_bucket: www.airbnbcebu.com
 
 # Below are examples of all the available configurations.
 # See README for more detailed info on each of them.
@@ -23,10 +23,12 @@ gzip:
 content_type:
   "*.js": application/javascript
   "*.css": text/css
-  ""
 
 # See http://docs.aws.amazon.com/general/latest/gr/rande.html#s3_region for valid endpoints
 s3_endpoint: ap-southeast-1
+
+exclude_from_upload:
+   - .DS_Store
 
 # ignore_on_server: that_folder_of_stuff_i_dont_keep_locally
 
